@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/bootstrap.min.css.map">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
-    <script src="<?=ROOT?>/assets/js/jquery-3.7.0.min"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="<?=ROOT?>/assets/js/sweetalert.min.js"></script>
+    <script src="<?=ROOT?>/assets/js/jquery-3.7.0.min.js"></script>
 
     <script src="<?=ROOT?>/assets/js/bootstrap.bundle.min.js"></script>
 
@@ -52,9 +54,9 @@
                                 <h5 class="mb-0 p-2 text-uppercase text-white"> Formulário de Filmes</h5>
                             </div>
                             <div class=" col-sm-2 col-3 col-md-2 col-lg-2" id="ex4">
-                                <a href="#listMovies" class="btn btn-info btn-sm rounded float-end">
+                                <button  onclick="toggleDivs('listMovies', 'formMovies')"  class="btn btn-info btn-sm rounded float-end">
                                     <i class="fa fa-list">Listar</i>
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -83,14 +85,13 @@
                                 <div class=" col-12 col-lg-5  mb-4 col-md-4">
                                     <select class="form-select text-center" name="classification" id="classification">
                                         <option selected value="">-- CLASSIFICAÇÃO --</option>
-                                        <option value="1">SEM SENSURA</option>
-                                        <option value="2">+6</option>
-                                        <option value="3">+8</option>
-                                        <option value="3">+12</option>
-                                        <option value="3">+12</option>
-                                        <option value="3">+18</option>
+                                        <?php if(!empty($classifications) > 0){ ?>
+                                            <?php foreach($classifications as $cl){ ?>
+                                                <option  value="<?=$cl->id ?>" ><?=$cl->name ?></option>
+                                            <?php }?>
+                                        <?php  }?>
                                     </select>
-                                   <small id="classificationError" class='text-danger text-left'></small>
+                                   <small id="classificationError" class='text-danger text-left d-none'></small>
                                 </div>
                             </div>
 
@@ -107,7 +108,7 @@
         
                                 <div class=" col-12 col-lg-2 mb-4 col-md-4">
                                     <div class="input-group">
-                                        <input name="year" type="number" min="1900" class="form-control" id="year" placeholder="Ano">
+                                        <input name="year" type="number"  class="form-control" id="year" placeholder="Ano">
                                     </div>
                                     <small id="yearError" class='text-danger text-left d-none'></small>
                                 </div>
@@ -115,9 +116,9 @@
                                 <div class=" col-12 col-lg-5  mb-4 col-md-4">
                                     <select class="form-select text-center " name="gender" id="gender">
                                         <option selected value="" multiple>-- GÉNERO --</option>
-                                        <?php if(count($genders) > 0){ ?>
+                                        <?php if(!empty($genders) > 0){ ?>
                                             <?php foreach($genders as $gender){ ?>
-                                                <option  value="<?=$gender->short_name ?>" multiple><?=$gender->name ?></option>
+                                                <option  value="<?=$gender->id ?>" multiple><?=$gender->name ?></option>
                                             <?php }?>
                                         <?php  }?>
                                     </select>
@@ -130,9 +131,9 @@
                                 <div class=" col-12 mb-4 col-md-4">
                                     <select class="form-select text-center" name="lang" id="lang">
                                         <option selected value="">-- IDIOMA --</option>
-                                        <?php if(count($langs) > 0){ ?>
+                                        <?php if(!empty($langs) > 0){ ?>
                                             <?php foreach($langs as $lang){ ?>
-                                                <option  value="<?=$lang->short_name ?>"><?=$lang->name ?></option>
+                                                <option  value="<?=$lang->id ?>"><?=$lang->name ?></option>
                                             <?php }?>
                                         <?php  }?>
                                     </select>
@@ -142,9 +143,9 @@
                                 <div class=" col-12 mb-4 col-md-4">
                                     <select class="form-select text-center" name="sub" id="sub">
                                         <option selected value="">-- LEGENDA --</option>
-                                        <?php if(count($langs) > 0){ ?>
+                                        <?php if(! empty($langs) > 0){ ?>
                                             <?php foreach($langs as $lang){ ?>
-                                                <option  value="<?=$lang->short_name ?>"><?=$lang->name ?></option>
+                                                <option  value="<?=$lang->id ?>"><?=$lang->name ?></option>
                                             <?php }?>
                                         <?php  }?>
                                     </select>
@@ -167,9 +168,9 @@
             </div>
         </div>
 
-        <div class="row mt-3 mb-4">
-            <div id="listMovies" class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12">
-                <div class=" card  shadow bg-secondary">
+        <div class="row mb-4">
+            <div id="listMovies" class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 d-none">
+                <div class="card  shadow bg-secondary">
                     <div class="card-header border-0">
 
                         <div class="row justify-content-between ">
@@ -177,16 +178,16 @@
                                 <h5 class="mb-0 p-2 text-uppercase text-white"> Lista De Filmes</h5>
                             </div>
                             <div class=" col-sm-2 col-3 col-md-2 col-lg-2" id="ex4">
-                                <a href="#formMovies" class="btn btn-info btn-sm p- rounded float-end">
+                                <button  onclick="toggleDivs('formMovies', 'listMovies')" class="btn btn-info btn-sm p- rounded float-end">
                                     <i class="fa fa-plus">Novo</i>
-                                </a>
+                                </button>
                             </div>
                         </div>
 
                     </div>
 
                     <div class='card-body bg-light table-responsive'>
-                    <?php if(count($movies) >0 ){ ?>
+                    <?php if(! empty($movies)) { ?>
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
@@ -202,11 +203,11 @@
                                 <th scope="col">Actualização</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbody">
                                 <?php foreach($movies as $movie){ ?>
                                 <tr>
                                     <th scope="row"> <?= $movie->title ?> </th>
-                                    <td> <?= $movie->title ?> </td>
+                                    <td> <?= $movie->cla ?> </td>
                                     <td> <?= $movie->gender ?> </td>
                                     <td> <?= $movie->duration ?>min </td>
                                     <td> <?= $movie->year ?> </td>
@@ -314,6 +315,14 @@
                         </span>
                     </a>
                 </li>
+                <li>
+                   <a href="<?=ROOT?>/">
+                        <i class="fa fa-arrow-left fa-2x"></i>
+                        <span class="nav-text">
+                            Página Inicial
+                        </span>
+                    </a>
+                </li>
             </ul>
 
             <ul class="logout">
@@ -333,71 +342,90 @@
 
 
     <script>
+        function toggleDivs(showDivId, hideDivId) {
+            var showDiv = document.getElementById(showDivId);
+            var hideDiv = document.getElementById(hideDivId);
+            
+            showDiv.classList.remove('d-none');
+            hideDiv.classList.add('d-none');
+        }
+
 
         $(document).ready(function() {
-            
-            // function manageErrors(id, valor) {
-            //     var errorDesc = document.getElementById(id+'Error');
-            //     var inputError = document.getElementById(id);
-            //     if (errorDesc) {
-            //         errorDesc.classList.remove('d-none'); // Define o estado da tag como visível
-            //         errorDesc.innerHTML = valor; // Injeta o valor fornecido no conteúdo da tag
-            //         inputError.classList.remove('is-valid'); 
-            //         if (inputError.classList.contains('is-valid')) {
-            //             inputError.classList.remove('is-valid');
-            //         }
-            //         inputError.classList.add('is-invalid');
-                    
-            //     }
-
-                
-            // }
-
             function inputError(errorList) {
-            var form = document.getElementById('moviesForm');
-            var elementos = form.querySelectorAll("[id]");
+                var form = document.getElementById('moviesForm');
+                var elementos = form.querySelectorAll("[id]");
 
-            for (var i = 0; i < elementos.length; i++) {
-                var elemento = elementos[i];
-                var idField = elemento.id;
-                var smallElement = document.getElementById(idField + 'Error');
+                for (var i = 0; i < elementos.length; i++) {
+                    var elemento = elementos[i];
+                    var idField = elemento.id;
+                    var smallElement = document.getElementById(idField + 'Error');
 
-                if (errorList.hasOwnProperty(idField)) {
-                elemento.classList.add('is-invalid');
-                elemento.classList.remove('is-valid');
-                if (smallElement) {
-                    smallElement.classList.remove('d-none');
-                    smallElement.innerHTML = errorList[idField];
+                    if (errorList.hasOwnProperty(idField)) {
+                        elemento.classList.add('is-invalid');
+                        elemento.classList.remove('is-valid');
+                        if (smallElement) {
+                            smallElement.classList.remove('d-none');
+                            smallElement.innerHTML = errorList[idField];
+                        }
+                    } else {
+                        elemento.classList.add('is-valid');
+                        elemento.classList.remove('is-invalid');
+                        if (smallElement) {
+                            smallElement.classList.add('d-none');
+                        }
+                    }
                 }
-                } else {
-                elemento.classList.add('is-valid');
-                elemento.classList.remove('is-invalid');
-                if (smallElement) {
+            }
+
+
+            function clearForm() {
+                var form = document.getElementById('moviesForm');
+                var elements = form.querySelectorAll("[id]");
+
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    var smallElement = document.getElementById(element.id + 'Error');
+
+                    element.classList.remove('is-valid');
+                    element.classList.remove('is-invalid');
+
+                    if (smallElement) {
                     smallElement.classList.add('d-none');
+                    }
                 }
-                }
+
+                // Limpar o formulário
+                form.reset();
             }
-            }
+
 
 
 
             $("#moviesForm").submit(function(event) {
+                // swal("Registo Filme", "Filme gravado com suesso!", "success");
                 event.preventDefault();
-                var formData = $(this).serialize();
+                var formData = new FormData(this);
+                formData.append('cover', $('#cover')[0].files[0]);
+
                 var link = document.getElementById("link").value;
                 $.ajax({
                     url: link,
                     type: "POST",
                     data: formData,
                     dataType: "json", // Define o tipo de dados esperado como JSON
+                    processData: false,
+                    contentType: false,
                     success: function(response) {
-                        // Atualiza a tabela com os dados do estudante
-                        // if()
-                        // console.log(response);
                         if (response.error) {
-                            
-                            console.log(response);
                             inputError(response);
+                        }else{
+                            if(response.status){
+                                swal("Registo Filme", "Filme gravado com suesso!", "success");
+                                clearForm();
+                            }else{
+                                swal("ERRO", "ERRO: "+response.error, "error");
+                            }
                         }
 
                         // Cria uma nova linha com os dados recebidos

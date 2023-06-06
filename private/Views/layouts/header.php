@@ -71,7 +71,14 @@
                     <li class="nav-item">
                         <a  class="text-warning nav-link" href="'. ROOT .'/user/login">  <i class="fa-solid fa-sign-in text-warning"></i> Login </a>
                     </li>
-                    '; else echo '
+                    '; else {
+                        if(Auth::user()->role !== 'user')
+                            echo 
+                            '<li class="nav-item">
+                                <a class="nav-link text-warning" href="'.ROOT.'/Admin' .'">  <i class="fa-solid fa-cogs text-warning"></i> Dashboard </a>
+                            </li>
+                            ';
+                        echo '
                     <div class="dropdown">
                         <a class="nav-link text-warning dropdown-toggle" href="'. ROOT .'/user/login" data-bs-toggle="dropdown" aria-expanded="false">'. Auth::user()->name  .' <i class="fa-solid fa-user "></i>  </a>
                         <ul class="dropdown-menu">
@@ -80,7 +87,7 @@
                             <li><a class="dropdown-item bg-danger text-white" href="'. ROOT . '/User/Logout"> <i class="fa-solid fa-power-off text-white"></i> Logout</a></li>
                         </ul>
                     </div>
-                    ' ;
+                    ' ;}
                     
                     ?>
                 </ul>

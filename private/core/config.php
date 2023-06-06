@@ -15,6 +15,7 @@
     }
 
     define('ROOT', 'http://localhost/Cinema/public');
+    define('PATH_COVERS', 'C:/wamp64/www/Cinema/public/covers/');
 
 
     // DATABASE
@@ -23,5 +24,5 @@
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
     define('DB_DRIVER', 'mysql');
-    define('PROJ_OWNER', 'Edson Da Cruz');
+    define('PROJ_OWNER', 'Edson Da Cruz & Joao Baciquete');
     define('PROJ_NAME', 'CineArts');

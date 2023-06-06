@@ -27,6 +27,11 @@ function esc($var)
     return htmlspecialchars($var);
 }
 
+function horaData($date){
+    $formattedDateTime = date('d/m/y \à\s H:i', strtotime($date));
+    return $formattedDateTime;
+}
+
 function diffForHumans($date){
 
     // Create DateTime objects

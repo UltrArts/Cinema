@@ -35,7 +35,7 @@
                                                 <h5 class="card-title  text-info"> <i class="fa fa-filme" aria-hidden="true">Filmes</i></h5>
                                             </div>
                                             <div class="col-6 text-white">
-                                                <h2 class="card-text text-end fw-bold text-info">67</h2>
+                                                <h2 class="card-text text-end fw-bold text-info"><?= $data['movies'] ?></h2>
                                             </div>
                                             <p class="text-white font-monospace">Total de Filmes Registados</p>
                                         </div>
@@ -50,7 +50,7 @@
                                                 <h5 class="card-title "> <i class="fa fa-users" aria-hidden="true">Clientes</i></h5>
                                             </div>
                                             <div class="col-6 text-white">
-                                                <h2 class="card-text text-end fw-bold">23</h2>
+                                                <h2 class="card-text text-end fw-bold"><?= $data['users'] ?></h2>
                                             </div>
                                             <p class="text-white font-monospace">Total de Clientes Registados</p>
                                         </div>
@@ -154,6 +154,14 @@
                         <i class="fa fa-cogs fa-2x"></i>
                         <span class="nav-text">
                             Perfil
+                        </span>
+                    </a>
+                </li>
+                <li>
+                   <a href="<?=ROOT?>/">
+                        <i class="fa fa-arrow-left fa-2x"></i>
+                        <span class="nav-text">
+                            Página Inicial
                         </span>
                     </a>
                 </li>

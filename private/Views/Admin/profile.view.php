@@ -141,7 +141,7 @@
                     </a>
                    
                 </li>
-                <li>
+                <li  >
                    <a href="<?=ROOT?>/Admin/UsersManage">
                        <i class="fa fa-users fa-2x"></i>
                         <span class="nav-text">
@@ -149,11 +149,21 @@
                         </span>
                     </a>
                 </li>
-                <li  class="has-subnav active">
-                   <a href="#">
-                        <i class="fa fa-cogs fa-2x"></i>
+                
+                <li class="has-subnav active">
+                    <a href="#">
+                       <i class="fa fa-cogs  fa-2x"></i>
                         <span class="nav-text">
                             Perfil
+                        </span>
+                    </a>
+                    
+                </li>
+                <li>
+                   <a href="<?=ROOT?>/">
+                        <i class="fa fa-arrow-left fa-2x"></i>
+                        <span class="nav-text">
+                            Página Inicial
                         </span>
                     </a>
                 </li>

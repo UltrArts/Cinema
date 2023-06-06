@@ -22,7 +22,9 @@ class Home extends Controller
         // $movies->insert($arr);
         
         // $movies = $movies->where('title', 'O Rei Leão');
-        $movies = $movies->all();
+        $movies = $movies->get();
+        // print_r($movies);
+        // die;
         // $movies = $movies->findById(1);
         $this->view('Home', ['movies' => $movies]);            
     }

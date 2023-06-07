@@ -9,12 +9,7 @@ class User extends Controller{
     }
     
     public function login(){
-        if(Auth::is_logged()){
-            Auth::user()->role == 'user' ?
-                $this->redirect('') :
-                $this->redirect('/Admin');
-
-        }
+        self::check_user();
         
         $errors = array();
 
@@ -49,8 +44,17 @@ class User extends Controller{
         $this->redirect('');
     }
 
+    private function check_user(){
+        if(Auth::is_logged()){
+            Auth::user()->role == 'user' ?
+                $this->redirect('') :
+                $this->redirect('/Admin');
+        }
+    }
+
 
     public function register(){
+        self::check_user();
         $errors = array();
         if(count($_POST) > 0)
         {

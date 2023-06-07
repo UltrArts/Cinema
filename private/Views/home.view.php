@@ -54,7 +54,7 @@
                             <div class="col-md-4 col-lg-3 col-sm-6 hvr-grow mb-3">
                                 <div class="card card-inverse card-primary text-centr">
                                     <img style="height: 20em;" class="card-img-top  " src=" <?= $movie->cover ?>" alt="<?= $movie->cover ?>">
-                                    <div class="card-block bg-dark p-2">
+                                    <div class="card-block bg-dark p-2 text-white">
                                         <h5 class="card-title text-light"> <?= $movie->title ?> </h5>
                                         <b>Gen: </b>Acçao, Comédia, Faroeste 
                                         <div>

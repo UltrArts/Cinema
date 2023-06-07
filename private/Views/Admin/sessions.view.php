@@ -353,7 +353,7 @@
 
 
 
-            $("#sessionsForm").submit(function(event) {
+            $("#sessionsFor").submit(function(event) {
                 // swal("Registo Salas", "Sala gravada com suesso!", "success");
                 event.preventDefault();
                 var formData = new FormData(this);

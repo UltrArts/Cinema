@@ -15,9 +15,9 @@ Class Users extends Model
         'id',
         'role',
     ];
-    // protected $beforeInsert = [
-    //     'hash_password',
-    // ];
+    protected $beforeInsert = [
+        'hash_password',
+    ];
     public function validate($data){
 
         $this->errors = array();

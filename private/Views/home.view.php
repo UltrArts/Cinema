@@ -63,7 +63,7 @@
                                             <i class="text-warning fa-solid  fa-star"></i>
                                             <i class="text-warning fa-solid  fa-star-half"></i>
                                         </div>
-                                        <div class="d-none" id="<?=$movie->id?>">
+                                        <div class="d-none" id="<?=$movie->session_id?>">
                                             <p class="text-light"><b>Duração:</b>  <?= $movie->duration ?>min</p>
                                             <p class="text-light"><b>Classificação:</b>  <?= $movie->cla ?></p>
                                             <p class="text-light"><b>Lançamento:</b>  <?= $movie->year ?></p>
@@ -72,10 +72,10 @@
                                         <div class="text-center">
                                             <div class="row ">
                                                 <div class="col-6">
-                                                    <button class="btn btn-secondary btn-sm" onclick="toggleDesc(<?=$movie->id?>)">Detalhes</button>
+                                                    <button class="btn btn-secondary btn-sm" onclick="toggleDesc(<?=$movie->session_id?>)">Detalhes</button>
                                                 </div>
                                                 <div class="col-6">
-                                                    <button id=" <?= $movie->id ?>c" class="btn btn-primary btn-sm">Aderir</button>
+                                                    <button id=" <?= $movie->session_id ?>c" class="btn btn-primary btn-sm">Aderir</button>
                                                 </div>
                                             </div>
                                         </div>

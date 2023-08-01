@@ -164,7 +164,7 @@
                                     <th scope="row"> <?=$session->title ?></th>
                                     <td><?=$session->room ?></td>
                                     <td><?=$session->price ?>Mt</td>
-                                    <td><?=horaData($session->time_init) ?></td>
+                                    <td><?=dateTime($session->time_init) ?></td>
                                     <td><?=$session->duration ?></td>
                                     <td>
                                     <?php if($session->status) {?>

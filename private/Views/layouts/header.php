@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/regular.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/solid.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/effects.css">
     <script src="<?=ROOT?>/assets/js/bootstrap.bundle.min.js"></script>
 
     <title><?=PROJ_NAME?></title>

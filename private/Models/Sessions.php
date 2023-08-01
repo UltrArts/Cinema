@@ -50,11 +50,15 @@ Class Sessions extends Model
     public function get(){
         $db = new Database;
         
-        $sessions = $db->query("select s.*, m.*, r.name room
+        $sessions = $db->query("select s.*, s.id session_id, m.*, r.name room, c.name cla, c.age age
         from sessions s
         INNER JOIN movies m ON s.movie_id = m.id
         INNER JOIN rooms r ON s.room_id = r.id
-        ORDER BY m.title ASC");
+        INNER JOIN classifications c ON m.classification_id = c.id
+        ORDER BY time_init ASC");
+        // echo '<pre>';
+        // print_r($sessions);
+        // die;
         return $sessions;
     }
 
